@@ -11,15 +11,25 @@ class Formulario extends Component {
     cotizarSeguro = (e) => {
         e.preventDefault();
 
+        // leer plan
+        const plan = this.planBasicoRef.current.checked ? 'Básico' : 'Completo'
+
         // Obtener datos
-        console.log(this.marcaRef.current.value);
 
         // Crear objeto
+        const infoAuto = {
+            marca: this.marcaRef.current.value,
+            year: this.yearRef.current.value,
+            plan: plan
+        }
 
         // Enviarlo al componente principal
+        this.props.cotizarSeguro(infoAuto);
 
-        console.log('Enviado');
+        // Resetear formulario
+        e.currentTarget.reset();
     }
+
   render() {
     return (
       <form className="cotizar-auto" onSubmit={this.cotizarSeguro}>
